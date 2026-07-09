@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>박원순 6주기 추도식 참석자 현황 분석</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  :root{
+    --bg:#F6F8FB; --card:#FFFFFF;
+    --ink:#111111; --body:#1F1F1F; --muted:#3A3A3A;
+    --line:#E7ECF3;
+    --coral:#EF7A63; --amber:#F2A93B; --navy:#2E5384; --teal:#3BA99A; --sky:#7FA9D8; --mist:#D9E0EA;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Pretendard','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    background:var(--bg); color:var(--body);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility; line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+
+  /* Header */
+  header{padding:56px 0 40px;text-align:center;position:relative}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.18em;color:var(--coral);text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+  .slogan{margin-top:16px;font-size:16px;color:var(--body)}
+  .slogan b{color:var(--navy);font-weight:700}
+  .meta{margin-top:10px;font-size:13.5px;color:var(--muted)}
+  .accent-bar{width:56px;height:4px;border-radius:4px;margin:24px auto 0;
+    background:linear-gradient(90deg,var(--coral),var(--amber))}
+
+  /* KPI strip */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:8px 0 44px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;text-align:center}
+  .kpi .num{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .kpi .num small{font-size:15px;font-weight:700;color:var(--muted);margin-left:2px}
+  .kpi .lab{margin-top:4px;font-size:12.5px;color:var(--muted);font-weight:500}
+
+  /* Section grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 24px;box-shadow:0 2px 18px rgba(27,42,71,.045)}
+  .card .idx{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--coral)}
+  .card h2{font-size:18.5px;font-weight:800;color:var(--ink);margin-top:4px;letter-spacing:-.01em}
+  .card .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .chart-box{position:relative;height:272px;margin:16px 0 6px}
+  .center-cap{position:absolute;top:39%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+  .center-cap .big{display:block;font-size:24px;font-weight:800;color:var(--ink);line-height:1}
+  .center-cap .sm{display:block;font-size:11px;color:#3A3A3A;margin-top:4px}
+
+  .comment{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line)}
+  .comment p{font-size:13px;color:#111111;line-height:1.65;text-indent:-14px;padding-left:14px;font-weight:500}
+  .comment p+p{margin-top:6px}
+  .comment b{color:#000000;font-weight:700}
+
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  footer b{color:var(--body)}
+
+  @media(max-width:820px){
+    .wrap{padding:0 18px 60px}
+    .kpis{grid-template-columns:repeat(2,1fr);gap:12px}
+    .grid{grid-template-columns:1fr;gap:18px}
+    header{padding:44px 0 32px}
+    h1{font-size:26px}
+  }
+  @media(max-width:480px){
+    .wrap{padding:0 14px 48px}
+    header{padding:30px 0 24px}
+    .eyebrow{font-size:11px;letter-spacing:.14em;margin-bottom:10px}
+    h1{font-size:22px;line-height:1.3}
+    .slogan{font-size:13.5px;margin-top:12px}
+    .meta{font-size:11.5px}
+    .accent-bar{margin-top:18px}
+    .kpis{margin:6px 0 32px;gap:10px}
+    .kpi{padding:15px 8px;border-radius:12px}
+    .kpi .num{font-size:23px}
+    .kpi .num small{font-size:12.5px}
+    .kpi .lab{font-size:11px}
+    .card{padding:20px 17px}
+    .card h2{font-size:16.5px}
+    .card .sub{font-size:11.5px}
+    .card .idx{font-size:11px}
+    .chart-box{height:248px;margin-top:14px}
+    .comment p{font-size:12.5px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">2026 · 6th Memorial Analysis</div>
+    <h1>박원순 6주기 추도식<br>참석자 현황 분석</h1>
+    <p class="slogan">방명록 기준 <b>참석 253명</b> · 사전 신청 130명 · 누적 후원자 525명</p>
+    <p class="meta">데이터: 추도식 참석자 명부 · 정기/비정기/잠재 후원회원 · 참석 신청 설문</p>
+    <div class="accent-bar"></div>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi"><div class="num">253<small>명</small></div><div class="lab">6주기 방명록 참석</div></div>
+    <div class="kpi"><div class="num">64<small>%</small></div><div class="lab">신규(첫 참석) 비중</div></div>
+    <div class="kpi"><div class="num">120<small>명</small></div><div class="lab">참석한 후원자</div></div>
+    <div class="kpi"><div class="num">57<small>%</small></div><div class="lab">현장(신청 없이) 참석</div></div>
+  </section>
+
+  <div class="grid">
+
+    <!-- 분석 1 -->
+    <div class="card">
+      <div class="idx">분석 01</div>
+      <h2>전체 후원자 중 6주기 참석</h2>
+      <div class="sub">한 번이라도 후원한 정기·비정기 회원 525명 기준</div>
+      <div class="chart-box">
+        <canvas id="c1"></canvas>
+      </div>
+      <div class="comment">
+        <p>※ 정기·비정기 후원회원(2023년 이후 한 번이라도 후원한 경우 포함) <b>525명</b> 중 6주기 추도식 참석 <b>120명</b>, 미참석 405명</p>
+      </div>
+    </div>
+
+    <!-- 분석 2 -->
+    <div class="card">
+      <div class="idx">분석 02</div>
+      <h2>신규 참석 vs 재참석</h2>
+      <div class="sub">6주기 참석자 253명의 이전 추도식(3·4·5주기) 경험</div>
+      <div class="chart-box">
+        <canvas id="c2"></canvas>
+      </div>
+      <div class="comment">
+        <p>※ 6주기 참석자 <b>253명</b> 중 이전 추도식(3·4·5주기) 참석 이력이 없는 신규 참석 <b>163명</b>, 과거 참석 경험이 있는 재참석 <b>90명</b> (3·4·5·6주기 모두 참석 20명)</p>
+      </div>
+    </div>
+
+    <!-- 분석 3 -->
+    <div class="card">
+      <div class="idx">분석 03</div>
+      <h2>참석자의 회원 유형</h2>
+      <div class="sub">6주기 참석자 253명의 후원회원 등록 현황</div>
+      <div class="chart-box">
+        <canvas id="c3"></canvas>
+      </div>
+      <div class="comment">
+        <p>※ 6주기 참석자 <b>253명</b> 중 정기회원 <b>77명</b>, 비정기회원 <b>43명</b>, 잠재회원 <b>13명</b>, 비회원·기타 <b>120명</b> (회원 합계 133명). 후원회원 파일과 전화번호·이름으로 대조하여 산입</p>
+      </div>
+    </div>
+
+    <!-- 분석 4 -->
+    <div class="card">
+      <div class="idx">분석 04</div>
+      <h2>사전 신청 vs 현장 참석</h2>
+      <div class="sub">참석자 253명의 사전 신청 여부 · 신청자 128명 중 109명 참석</div>
+      <div class="chart-box">
+        <canvas id="c4"></canvas>
+      </div>
+      <div class="comment">
+        <p>※ 6주기 참석자 <b>253명</b> 중 사전 신청 후 참석 <b>109명</b>, 사전 신청 없이 현장 참석 <b>144명</b></p>
+        <p>※ 사전 신청자 <b>128명</b> 기준으로는 <b>109명 참석</b>·19명 미참석 (참석률 85%)</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <b>산출 기준</b> · 참석은 추도식 참석자 명부의 6주기 체크(방명록), 회원 여부는 정기·비정기·잠재 후원회원 파일, 신청은 참석 설문 응답을 전화번호·이름으로 대조하여 집계. 전화번호 누락·동명이인으로 소수의 오차가 있을 수 있음. · 작년(5주기) 평가자료 형식 참고.
+  </footer>
+
+</div>
+
+<script>
+Chart.register(ChartDataLabels);
+const FONT="'Pretendard','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif";
+Chart.defaults.font.family=FONT;
+const C={coral:'#EF7A63',amber:'#F2A93B',navy:'#2E5384',teal:'#3BA99A',sky:'#7FA9D8',mist:'#D9E0EA'};
+
+// 도넛 정중앙(호 중심)에 총원 텍스트를 그리는 플러그인
+const centerText={
+  id:'centerText',
+  afterDatasetsDraw(chart,args,opts){
+    if(!opts||!opts.big) return;
+    const meta=chart.getDatasetMeta(0);
+    if(!meta.data.length) return;
+    const el=meta.data[0];
+    const x=el.x, y=el.y;
+    const r=el.innerRadius||60;
+    const big=Math.max(17,Math.min(24,r*0.52));
+    const sm=Math.max(9.5,Math.min(11.5,r*0.26));
+    const ctx=chart.ctx;
+    ctx.save();
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillStyle='#111111';
+    ctx.font="800 "+big+"px "+FONT;
+    ctx.fillText(opts.big, x, y-big*0.42);
+    ctx.fillStyle='#3A3A3A';
+    ctx.font="500 "+sm+"px "+FONT;
+    ctx.fillText(opts.small, x, y+big*0.62);
+    ctx.restore();
+  }
+};
+Chart.register(centerText);
+
+function donut(id,labels,data,colors,bigText,smallText){
+  new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{labels:labels,datasets:[{data:data,backgroundColor:colors,borderColor:'#fff',borderWidth:3,hoverOffset:6}]},
+    options:{
+      cutout:'70%',responsive:true,maintainAspectRatio:false,
+      layout:{padding:{top:6,bottom:6}},
+      plugins:{
+        centerText:{big:bigText,small:smallText},
+        legend:{position:'bottom',labels:{boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'circle',
+          padding:14,color:'#1A1A1A',font:{size:12.5,weight:'600'},
+          generateLabels:(ch)=>{const d=ch.data;const tot=d.datasets[0].data.reduce((a,b)=>a+b,0);
+            return d.labels.map((l,i)=>{const v=d.datasets[0].data[i];
+              return{text:`${l}  ${v}명 (${Math.round(v/tot*100)}%)`,fillStyle:d.datasets[0].backgroundColor[i],
+                strokeStyle:'#fff',lineWidth:0,pointStyle:'circle',index:i};});}}},
+        tooltip:{callbacks:{label:(c)=>{const t=c.dataset.data.reduce((a,b)=>a+b,0);
+          return ` ${c.label}: ${c.parsed}명 (${Math.round(c.parsed/t*100)}%)`;}}},
+        datalabels:{color:'#fff',font:{size:13,weight:'700'},
+          formatter:(v,ctx)=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);const p=Math.round(v/t*100);
+            return p>=7?p+'%':'';}}
+      }
+    }
+  });
+}
+
+donut('c1',['참석','미참석'],[120,405],[C.coral,C.mist],'525명','누적 후원자');
+donut('c2',['신규 (첫 참석)','재참석 (과거 경험)'],[163,90],[C.amber,C.navy],'253명','6주기 참석');
+donut('c3',['정기회원','비정기회원','잠재회원','비회원·기타'],[77,43,13,120],[C.navy,C.teal,C.amber,C.mist],'253명','6주기 참석');
+donut('c4',['신청 후 참석','신청 없이 참석 (현장)'],[109,144],[C.sky,C.coral],'253명','6주기 참석');
+</script>
+</body>
+</html>
